@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useMenu } from '@/hooks/useMenu';
 import Header from '@/components/Header';
@@ -8,7 +8,13 @@ import { Badge } from '@/components/ui/badge';
 import MenuSection from '@/components/MenuSection';
 
 const Menu = () => {
-  const { loading, categories, getItemsByCategory } = useMenu();
+  const { menuItems, loading, getItemsByCategory } = useMenu();
+  
+  // Extract unique categories from menuItems
+  const categories = useMemo(() => {
+    if (!menuItems || menuItems.length === 0) return [];
+    return [...new Set(menuItems.map(item => item.category))];
+  }, [menuItems]);
 
   return (
     <div className="flex flex-col min-h-screen">

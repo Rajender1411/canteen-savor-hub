@@ -26,7 +26,7 @@ const Index = () => {
         duration: 20, 
         ease: "linear", 
         repeat: Infinity, 
-        repeatType: "reverse" 
+        repeatType: "mirror" 
       }
     }
   };
